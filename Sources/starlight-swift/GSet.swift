@@ -1,4 +1,4 @@
-open class GSet<T> : CRDTSet<T> where T : Hashable  {
+open class GSet<T>: CRDTSet<T> where T: Hashable {
 
     var data: Set<T>
 
@@ -12,7 +12,7 @@ open class GSet<T> : CRDTSet<T> where T : Hashable  {
         data = .init()
     }
 
-    override public func add(_ input: T) { 
+    override public func add(_ input: T) {
         data.insert(input)
     }
 
@@ -27,5 +27,5 @@ open class GSet<T> : CRDTSet<T> where T : Hashable  {
     override public func merge(_ foreign: CRDTSet<T>) -> Self {
         data = data.union(foreign.dataset)
         return self
-    } 
+    }
 }

@@ -1,5 +1,5 @@
-open class TwoPhaseSet<T> where T : Hashable {
-    
+open class TwoPhaseSet<T> where T: Hashable {
+
     var data: GSet<T>
     var tomb: GSet<T>
 
@@ -23,17 +23,17 @@ open class TwoPhaseSet<T> where T : Hashable {
     public func contains(_ input: T) -> Bool {
         return data.contains(input) && !tomb.contains(input)
     }
-    
+
     public func add(_ input: T) {
         data.add(input)
     }
 
     public func remove(_ input: T) {
-        if (self.contains(input)) {
+        if self.contains(input) {
             tomb.add(input)
         }
     }
-  
+
     public func compare(_ foreign: TwoPhaseSet<T>) -> Bool {
         return dataset.compare(foreign.dataset) && tombstone.compare(foreign.tombstone)
     }
@@ -42,5 +42,5 @@ open class TwoPhaseSet<T> where T : Hashable {
         data = data.merge(foreign.dataset)
         tomb = tomb.merge(foreign.tomb)
         return self
-    } 
+    }
 }
