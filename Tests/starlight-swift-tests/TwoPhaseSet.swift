@@ -22,6 +22,21 @@ final class TwoPhaseSetTests: XCTestCase {
         XCTAssertEqual(twoPset.contains(fixture1), true)
     }
     
+    func testRemove() {
+        let twoPset1 = TwoPhaseSet<Dummy>()
+        twoPset1.add(fixture1)
+        twoPset1.add(fixture2)
+        twoPset1.add(fixture3)
+        twoPset1.remove(fixture2)
+        
+        let twoPset2 = TwoPhaseSet<Dummy>()
+        twoPset2.add(fixture1)
+        twoPset2.add(fixture3)
+        
+        XCTAssertEqual(twoPset1.dataset.dataset.count, 2)
+        XCTAssertEqual(twoPset1.compare(twoPset2), true)
+    }
+    
     func testCompare() {
         let twoPset1 = TwoPhaseSet<Dummy>()
         twoPset1.add(fixture1)
