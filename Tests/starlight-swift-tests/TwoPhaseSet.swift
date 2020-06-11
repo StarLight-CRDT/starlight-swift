@@ -33,8 +33,8 @@ final class TwoPhaseSetTests: XCTestCase {
         twoPset2.add(fixture1)
         twoPset2.add(fixture3)
         
-        XCTAssertEqual(twoPset1.dataset.dataset.count, 2)
-        XCTAssertEqual(twoPset1.compare(twoPset2), true)
+        XCTAssertEqual(twoPset1.contains(fixture2), false)
+        XCTAssertEqual(twoPset1.compare(twoPset2), false)
     }
     
     func testCompare() {

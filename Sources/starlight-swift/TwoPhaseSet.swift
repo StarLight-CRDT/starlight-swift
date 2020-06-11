@@ -1,7 +1,7 @@
 open class TwoPhaseSet<T> where T: Hashable {
 
-    var data: GSet<T>
-    var tomb: GSet<T>
+    private var data: GSet<T>
+    private var tomb: GSet<T>
 
     public var dataset: GSet<T> {
         get {
@@ -12,6 +12,12 @@ open class TwoPhaseSet<T> where T: Hashable {
     public var tombstone: GSet<T> {
         get {
             return tomb
+        }
+    }
+    
+    public var count: Int {
+        get {
+            return data.count - tomb.count
         }
     }
 
@@ -35,6 +41,7 @@ open class TwoPhaseSet<T> where T: Hashable {
     }
 
     public func compare(_ foreign: TwoPhaseSet<T>) -> Bool {
+        if (count != foreign.count) { return false }
         return dataset.compare(foreign.dataset) && tombstone.compare(foreign.tombstone)
     }
 

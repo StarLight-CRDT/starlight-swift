@@ -1,6 +1,6 @@
 open class GSet<T>: CRDTSet<T> where T: Hashable {
 
-    var data: Set<T>
+    private var data: Set<T>
 
     override public var dataset: Set<T> {
         get {
@@ -10,6 +10,12 @@ open class GSet<T>: CRDTSet<T> where T: Hashable {
 
     override init() {
         data = .init()
+    }
+    
+    var count: Int {
+        get {
+            return data.count
+        }
     }
 
     override public func add(_ input: T) {
