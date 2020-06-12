@@ -12,7 +12,7 @@ open class GSet<T>: CRDTSet<T> where T: Hashable {
         data = .init()
     }
     
-    var count: Int {
+    override public var count: Int {
         get {
             return data.count
         }
@@ -27,6 +27,7 @@ open class GSet<T>: CRDTSet<T> where T: Hashable {
     }
 
     override public func compare(_ foreign: CRDTSet<T>) -> Bool {
+        if (data.count != foreign.count) { return false }
         return data.allSatisfy { foreign.contains($0) }
     }
 

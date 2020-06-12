@@ -5,6 +5,12 @@ open class CRDTSet<T> where T: Hashable {
             fatalError()
         }
     }
+    
+    public var count: Int {
+        get {
+            fatalError()
+        }
+    }
 
     public func add(_ input: T) { fatalError() }
 

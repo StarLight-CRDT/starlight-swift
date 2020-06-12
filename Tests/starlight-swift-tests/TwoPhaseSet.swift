@@ -13,7 +13,7 @@ final class TwoPhaseSetTests: XCTestCase {
         twoPset.add(fixture1)
         twoPset.add(fixture2)
         twoPset.add(fixture3)
-        XCTAssertEqual(twoPset.dataset.dataset.count, 3)
+        XCTAssertEqual(twoPset.count, 3)
     }
     
     func testContains() {
