@@ -21,7 +21,7 @@ final class GSetTests: XCTestCase {
         let gset = GSet<Dummy>()
         gset.add(fixture1)
         
-        XCTAssertEqual(gset.contains(fixture1), true)
+        XCTAssertTrue(gset.contains(fixture1))
     }
     
     func testCompare() {
@@ -45,9 +45,9 @@ final class GSetTests: XCTestCase {
         gset4.add(fixture3)
         gset4.add(fixture4)
         
-        XCTAssertEqual(gset.compare(gset2), true)
-        XCTAssertEqual(gset.compare(gset3), false)
-        XCTAssertEqual(gset.compare(gset4), false)
+        XCTAssertTrue(gset.compare(gset2))
+        XCTAssertFalse(gset.compare(gset3))
+        XCTAssertFalse(gset.compare(gset4))
     }
     
     func testMerge() {
@@ -68,6 +68,6 @@ final class GSetTests: XCTestCase {
         gset3.add(fixture4)
         
         let gset4: GSet<Dummy> = gset.merge(gset2)
-        XCTAssertEqual(gset4.compare(gset3), true)
+        XCTAssertTrue(gset4.compare(gset3))
     }
 }

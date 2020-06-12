@@ -47,7 +47,7 @@ open class TwoPhaseSet<T> where T: Hashable {
 
     public func merge(_ foreign: TwoPhaseSet<T>) -> Self {
         data = data.merge(foreign.dataset)
-        tomb = tomb.merge(foreign.tomb)
+        tomb = tomb.merge(foreign.tombstone)
         return self
     }
 }

@@ -19,7 +19,7 @@ final class TwoPhaseSetTests: XCTestCase {
     func testContains() {
         let twoPset = TwoPhaseSet<Dummy>()
         twoPset.add(fixture1)
-        XCTAssertEqual(twoPset.contains(fixture1), true)
+        XCTAssertTrue(twoPset.contains(fixture1))
     }
     
     func testRemove() {
@@ -33,8 +33,8 @@ final class TwoPhaseSetTests: XCTestCase {
         twoPset2.add(fixture1)
         twoPset2.add(fixture3)
         
-        XCTAssertEqual(twoPset1.contains(fixture2), false)
-        XCTAssertEqual(twoPset1.compare(twoPset2), false)
+        XCTAssertFalse(twoPset1.contains(fixture2))
+        XCTAssertFalse(twoPset1.compare(twoPset2))
     }
     
     func testCompare() {
@@ -55,9 +55,9 @@ final class TwoPhaseSetTests: XCTestCase {
         twoPset4.add(fixture3)
         twoPset4.add(fixture4)
         
-        XCTAssertEqual(twoPset1.compare(twoPset2), true)
-        XCTAssertEqual(twoPset1.compare(twoPset3), false)
-        XCTAssertEqual(twoPset1.compare(twoPset4), false)
+        XCTAssertTrue(twoPset1.compare(twoPset2))
+        XCTAssertFalse(twoPset1.compare(twoPset3))
+        XCTAssertFalse(twoPset1.compare(twoPset4))
     }
     
     func testMerge() {
@@ -76,6 +76,6 @@ final class TwoPhaseSetTests: XCTestCase {
         twoPset4.add(fixture4)
         
         let twoPsetMerged = twoPset1.merge(twoPset2)
-        XCTAssertEqual(twoPsetMerged.compare(twoPset4), true)
+        XCTAssertTrue(twoPsetMerged.compare(twoPset4))
     }
 }
