@@ -1,9 +1,5 @@
 open class GCounter {
 
-    enum Failures: Error {
-        case counterWithDiffSizes
-    }
-
     private let id: Int
     private var nodes: [Int]
 

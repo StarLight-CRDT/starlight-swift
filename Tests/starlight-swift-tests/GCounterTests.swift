@@ -3,7 +3,7 @@ import XCTest
 
 final class GCounterTests: XCTestCase {
 
-    func testIncrementWithNonInitialValue() {
+    func testIncrementWithNoInitialValue() {
         let counter = GCounter()
 
         counter.increment()
