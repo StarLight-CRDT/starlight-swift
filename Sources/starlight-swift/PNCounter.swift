@@ -3,14 +3,15 @@ open class PNCounter {
     private var positive: GCounter
     private var negative: GCounter
     
-    init(
-        positives: GCounter = GCounter(),
-        negatives: GCounter = GCounter()
-    ) {
+    init(positives: GCounter, negatives: GCounter) throws {
         if (positives.count != negatives.count) { throw Failures.counterWithDiffSizes }
         self.positive = positives
         self.negative = negatives
         id = self.positive.count
+    }
+
+    convenience init() {
+        try! self.init(positives: GCounter(), negatives: GCounter()) 
     }
     
     public var count: Int {
@@ -40,15 +41,20 @@ open class PNCounter {
     
     func merge(_ foreign: PNCounter) throws -> Self {
         if (!hasForeignSameSize(foreign)) { throw Failures.counterWithDiffSizes }
-        let newPositive = self.positive.merge(foreign.positive)
-        let newNegative = self.negative.merge(foreign.negative)
-        positive = newNegative
-        negative = newNegative
+        do {
+            let newPositive = try positive.merge(foreign.positive)
+            let newNegative = try negative.merge(foreign.negative)
+            positive = newPositive
+            negative = newNegative
+        } catch (let err) {
+            throw err
+        }
         return self
     }
     
     private func hasForeignSameSize(_ foreign: PNCounter) -> Bool {
-        return self.positive.count == foreign.positive.count &&
-            self.negative.count == foreign.negative.count)
+        return 
+            self.positive.count == foreign.positive.count &&
+            self.negative.count == foreign.negative.count
     }
 }
